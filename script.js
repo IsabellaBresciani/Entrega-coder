@@ -1,3 +1,4 @@
+//Variables
 let arti=0
 let pantalon=0
 let calzas=0
@@ -7,6 +8,30 @@ let pantalones=0
 let respuestaCompra=" "
 let x =""
 
+const precios=[5000,4000,3000,2000];
+const producto=["pantalones","calzas","camisones","remeras"]
+const articulos=["","","",""];
+
+//Objetos
+class Articulo {
+    constructor (titulo, precio){
+        this.titulo = titulo.toUpperCase();
+        this.precio = parseFloat(precio);
+    }
+    sumaIva(){
+        this.precio = this.precio *1.21;
+    }
+    
+}
+
+for (let index=0;index<4;index++){
+    const articulos = new Articulo(producto[index],precios[index]);
+}
+
+
+
+
+//funciones
 function impresion(articulo,cantidad,precio){
     console.log(articulo,": ", cantidad, "Monto:  ", cantidad*precio)
 }
@@ -61,7 +86,8 @@ while(respuesta.toLowerCase()=="si"){
     impresion("remeras",remeras,3000)
     respuesta = prompt("Quiere realizar otra compra? si/no")
 }
-    //Calculo monto a pagar
+
+
     
 
 
