@@ -10,7 +10,8 @@ let x =""
 
 const precios=[5000,4000,3000,2000];
 const producto=["pantalones","calzas","camisones","remeras"]
-const articulos=["","","",""];
+const articulos=[];
+const cantidades=[0,0,0,0]
 
 //Objetos
 class Articulo {
@@ -24,11 +25,10 @@ class Articulo {
     
 }
 
-for (let index=0;index<4;index++){
-    const articulos = new Articulo(producto[index],precios[index]);
+for (let index=0;index<producto.length;index++){
+    const art=(new Articulo(producto[index],precios[index]))
+    articulos.push(art)
 }
-
-
 
 
 //funciones
@@ -42,49 +42,51 @@ function compra(){
     arti=arti+cantidad
 }
 
+compras=1
 
 let respuesta = prompt("Bienvenido a aktual la tienda de ropa de embarazada mas grande en Argentina, Quiere realizar una compra? si/no")
 while(respuesta.toLowerCase()=="si"){
+    
     //seleccion de productos
+    for(let index=0;index<producto.length;index++){
+       cantidades[index]=0
+    }
     do{
         respuestaCompra = prompt(" Que desea comprar? \n PANTALON,REMERA,CALZA,CAMISON")
         respuestaCompra=respuestaCompra.toLowerCase()
-        if(respuestaCompra=="pantalones"|| respuestaCompra=="pantalones " || respuestaCompra=="jean " || respuestaCompra=="jean" || respuestaCompra=="jeans" || respuestacompra=="jean" || respuestaCompra=="pantalon "){
-            respuestaCompra="pantalon"
-        }
         switch(respuestaCompra){
             case "pantalon":
                 compra();
-                pantalones=pantalones+arti
-                
+                cantidades[0]=cantidades[0]+arti
             break;
             case "calza":
                 compra();
-                calzas=calzas+arti
+                cantidades[1]=cantidades[1]+arti
                 
             break;
             case "camison":
                 compra();
-                camisones=camisones+arti
+                cantidades[2]=cantidades[2]+arti
                 
             break;
             case "remera":
                 compra();
-                remeras=remeras+arti
+                cantidades[3]=cantidades[3]+arti
             break;
             default:
                 console.log("El articulo ingresado no es valido, vuelva a intentarlo")
         }
         x=prompt("desea incorporar algun articulo mas? si/no")
     }while(x.toLowerCase() == "si")
-    console.log(pantalones)
-    let monto = pantalones*5000+calzas*4000+camisones*2000+remeras*3000
+    let monto = 0
+    console.log(`Numero de compra: `+ compras)
+    for(let index=0;index<producto.length;index++){
+        impresion(articulos[index].titulo,cantidades[index],articulos[index].precio)
+        monto=monto+cantidades[index]*articulos[index].precio
+    }
     console.log("EL MONTO TOTAL ES: ",monto)
-    impresion("pantalones",pantalones,5000)
-    impresion("calzas",calzas,4000)
-    impresion("camisones",camisones,5000)
-    impresion("remeras",remeras,3000)
     respuesta = prompt("Quiere realizar otra compra? si/no")
+    compras=compras+1
 }
 
 
