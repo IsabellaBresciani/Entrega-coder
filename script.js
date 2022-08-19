@@ -7,16 +7,22 @@ let camisones=0
 let pantalones=0
 let respuestaCompra=" "
 let x =""
+let cantidad=0
 
 const precios=[5000,4000,3000,2000];
-const producto=["pantalones","calzas","camisones","remeras"]
+const producto=["Pantalones","Palzas","Camisones","Remeras"]
+const imagenes=["./Imagenes/embarazada1.jpg","./Imagenes/embarazada2.webp","./Imagenes/embarazada3.jpg","./Imagenes/embarazada4.jfif"]
+const descriptions=["En general llevar ropa muy ajustada no es recomendable ya que, entre otras cosas, dificulta la circulación, favorece la aparición de infecciones vaginales", "Recomendadas para usar durante la realizacion de alguna actividad fisica.","REMERA BÁSICA DE MANGAS 3/4 PENSADA PARA EL EMBARAZO Y LACTANCIA. CON ABERTURA OCULTA BAJO EL BUSTO PARA FACILITAR LA LACTANCIA","Para el sanatorio, se recomienda llevar dos o tres pijamas o camisones, por si acaso.REMERA BÁSICA DE MANGAS 3/4 PENSADA PARA EL EMBARAZO Y LACTANCIA. CON ABERTURA OCULTA BAJO EL BUSTO PARA FACILITAR LA LACTANCIA."]
 const articulos=[];
 const cantidades=[0,0,0,0]
+const divProductos = document.getElementById("divProductos")
 
 //Objetos
 class Articulo {
-    constructor (titulo, precio){
-        this.titulo = titulo.toUpperCase();
+    constructor (imagen,titulo,description, precio){
+        this.imagen = imagen
+        this.titulo = titulo;
+        this.description=description;
         this.precio = parseFloat(precio);
     }
     sumaIva(){
@@ -26,7 +32,7 @@ class Articulo {
 }
 
 for (let index=0;index<producto.length;index++){
-    const art=(new Articulo(producto[index],precios[index]))
+    const art=(new Articulo(imagenes[index],producto[index],descriptions[index],precios[index]))
     articulos.push(art)
 }
 
@@ -42,10 +48,23 @@ function compra(){
     arti=arti+cantidad
 }
 
-compras=1
+
+articulos.forEach((producto) => {
+    divProductos.innerHTML += `
+    <div class="producto">
+        <picture class="producto-img"> <img class="imagenes" src=${producto.imagen}> </picture>
+        <p class="producto-title"> ${producto.titulo}</p>
+        <div class="producto-description"> <p>${producto.description}</p></div>
+        <p class="producto-price"> ${producto.precio}</p>
+        <button class="producto-button"> Comprar <button>
+    </div>`
+})
+
+let compras = 1
+
 
 let respuesta = prompt("Bienvenido a aktual la tienda de ropa de embarazada mas grande en Argentina, Quiere realizar una compra? si/no")
-while(respuesta.toLowerCase()=="si"){
+while(respuesta=="si"){
     
     //seleccion de productos
     for(let index=0;index<producto.length;index++){
@@ -88,8 +107,8 @@ while(respuesta.toLowerCase()=="si"){
     respuesta = prompt("Quiere realizar otra compra? si/no")
     compras=compras+1
 }
-
-
     
 
 
+let boton = document.getElementsByClassName("producto-button")
+boton.onclick = () => {console.log("realizaste una compra")}

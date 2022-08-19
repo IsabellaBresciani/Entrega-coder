@@ -1,0 +1,48 @@
+body{
+    background-color: azure;
+    color: rgb(7, 115, 101);
+}
+.producto-button{
+    background-color: #3be6b9; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+.producto{
+    display:flex;
+    flex-direction: column;
+    width: 30vw;
+    max-height: 700px;
+    margin: 5%;
+    border-style: solid;
+    border-radius: 6px;
+    border-color: linear-gradient(#101e22, #9198e5);;
+    padding: 4%;
+}
+.producto-img{
+    max-width: 400px;
+    padding: 3%;
+    display: flex;
+    justify-content: center;
+}
+.producto-title{
+    font-size: larger;
+}
+.imagenes{
+    max-width: 300px;
+    padding: 3%;
+}
+.producto-description{
+    max-width: 200px;
+}
+#divProductos{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+   
+}
